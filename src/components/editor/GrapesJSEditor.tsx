@@ -1,10 +1,9 @@
-
 import React, { useEffect, useRef } from "react";
 import "grapesjs/dist/css/grapes.min.css";
-import "./editor.css"; // Importando nosso CSS personalizado
+import "./editor.css";
 import grapesjs from "grapesjs";
 import gjsPresetWebpage from "grapesjs-preset-webpage";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 // Importações de componentes da landing page
 import { HeroSection } from "@/components/HeroSection";
@@ -23,13 +22,12 @@ interface GrapesJSEditorProps {
 
 export const GrapesJSEditor: React.FC<GrapesJSEditorProps> = ({ isPreview = false }) => {
   const editorRef = useRef<HTMLDivElement>(null);
-  const editor = useRef<any>(null);
+  const editor = useRef<grapesjs.Editor | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
     if (!editorRef.current) return;
 
-    // Inicializar o editor GrapesJS
     editor.current = grapesjs.init({
       container: editorRef.current,
       height: "100%",

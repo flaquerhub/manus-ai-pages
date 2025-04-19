@@ -1,12 +1,12 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Save, Upload, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { GrapesJSEditor } from "@/components/editor/GrapesJSEditor";
 
-const Editor = () => {
+const Editor: React.FC = () => {
   const [isPreview, setIsPreview] = useState(false);
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +24,6 @@ const Editor = () => {
       toast({
         title: "Página publicada com sucesso!",
         description: "Acesse: https://sua-pagina.netlify.app",
-        variant: "default",
       });
     }, 2000);
   };
