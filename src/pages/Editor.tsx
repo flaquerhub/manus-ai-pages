@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Save, Upload, Eye, Download } from "lucide-react";
@@ -7,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { GrapesJSEditor } from "@/components/editor/GrapesJSEditor";
 import { PublishModal } from "@/components/editor/PublishModal";
 import { useEditor } from "@/components/editor/hooks/useEditor";
+import ImportButton from "@/components/editor/components/ImportButton";
 
 const Editor: React.FC = () => {
   const [isPreview, setIsPreview] = useState(false);
@@ -34,6 +34,10 @@ const Editor: React.FC = () => {
     return await publishProject(options, onProgress);
   };
 
+  const handleImport = (content: string) => {
+    console.log('Importing content:', content);
+  };
+
   return (
     <div className="flex flex-col h-screen">
       <header className="bg-primary text-white p-3 shadow-md flex items-center justify-between">
@@ -44,6 +48,7 @@ const Editor: React.FC = () => {
           <h1 className="text-lg font-medium">Landing Page Editor</h1>
         </div>
         <div className="flex items-center gap-2">
+          <ImportButton onImport={handleImport} />
           <Button
             variant="outline"
             size="sm"
