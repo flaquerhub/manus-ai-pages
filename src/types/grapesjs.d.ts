@@ -114,10 +114,13 @@ declare module 'grapesjs' {
     getComponents(): any;
     getWrapper(): any;
     destroy(): void;
+    store(): void;
     [key: string]: any;
   }
 
-  export default function init(config: EditorConfig): Editor;
+  // Update the default export to be callable directly
+  const grapesjs: (config: EditorConfig) => Editor;
+  export default grapesjs;
 }
 
 declare module 'grapesjs-preset-webpage' {
