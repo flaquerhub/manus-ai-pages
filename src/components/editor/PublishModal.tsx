@@ -18,7 +18,7 @@ import { Loader2, CheckCircle, Info } from "lucide-react";
 interface PublishModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onPublish: (options: { customDomain?: string }) => Promise<any>;
+  onPublish: (options: { customDomain?: string }, onProgress?: (progress: number, log: string) => void) => Promise<any>;
 }
 
 export const PublishModal: React.FC<PublishModalProps> = ({

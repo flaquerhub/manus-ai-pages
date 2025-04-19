@@ -24,7 +24,7 @@ export const useEditor = ({ containerRef, isPreview = false }: UseEditorProps) =
 
     const initEditor = () => {
       try {
-        // Create the editor instance
+        // Create the editor instance with the proper configuration
         const editorInstance = grapesjs.init(createEditorConfig(containerRef.current!));
         
         // Register custom components
