@@ -58,7 +58,6 @@ export const exportToZip = async (editor: Editor) => {
   saveAs(content, 'landing-page.zip');
 };
 
-// Publish the project to Netlify Drop (simulated)
 export interface PublishOptions {
   customDomain?: string;
 }
