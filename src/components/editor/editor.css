@@ -1,0 +1,162 @@
+
+/* Estilos para o editor GrapesJS */
+.gjs-editor-cont {
+  font-family: "Inter", sans-serif;
+}
+
+.gjs-one-bg {
+  background-color: #f8f9fa;
+}
+
+.gjs-two-color {
+  color: #1a365d;
+}
+
+.gjs-four-color, .gjs-four-color-h:hover {
+  color: #fbbf24;
+}
+
+.gjs-pn-panel {
+  padding: 0.5rem;
+}
+
+.gjs-block {
+  transition: all 0.2s ease;
+  box-shadow: none;
+  border-radius: 0.25rem;
+  border: 1px solid #e2e8f0;
+}
+
+.gjs-block:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.gjs-block-category {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5rem 0;
+}
+
+.gjs-pn-views-container {
+  padding: 0.5rem;
+  border-top: none;
+}
+
+.gjs-pn-views {
+  border-top: none;
+}
+
+.gjs-cv-canvas {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  width: calc(100% - 300px);
+  left: 0;
+}
+
+.gjs-pn-panels {
+  right: 0;
+  left: auto;
+  width: 300px;
+}
+
+.gjs-pn-options {
+  right: 0;
+  left: auto;
+}
+
+.gjs-pn-commands {
+  width: 100%;
+}
+
+.gjs-pn-views-container {
+  width: 300px;
+  right: 0;
+  left: auto;
+}
+
+.panel__devices {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background-color: #fff;
+  border-radius: 0 0 0.25rem 0.25rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  padding: 0.25rem;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.panel__devices .gjs-pn-btn {
+  margin: 0 0.25rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.panel__devices .gjs-pn-active {
+  background-color: #1a365d;
+  color: white;
+}
+
+.gjs-mdl-dialog {
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.gjs-sm-sectors .gjs-sm-title,
+.gjs-clm-tags .gjs-sm-title,
+.gjs-block-category .gjs-title,
+.gjs-layer-title {
+  background-color: #f1f5f9;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.gjs-layer {
+  padding: 0.25rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+}
+
+.gjs-layer.gjs-selected {
+  background-color: #e2e8f0;
+}
+
+.gjs-field {
+  border-radius: 0.25rem;
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: none;
+}
+
+.gjs-field:focus-within {
+  border-color: #1a365d;
+}
+
+.gjs-sm-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+/* Estilos específicos para componentes dnd */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background-color: #fbbf24;
+  color: #1a365d;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button:hover {
+  background-color: #f59e0b;
+}
