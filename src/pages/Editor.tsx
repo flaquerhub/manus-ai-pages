@@ -24,7 +24,7 @@ const Editor = () => {
       toast({
         title: "Página publicada com sucesso!",
         description: "Acesse: https://sua-pagina.netlify.app",
-        variant: "success",
+        variant: "default",
       });
     }, 2000);
   };

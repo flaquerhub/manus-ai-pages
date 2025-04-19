@@ -540,18 +540,34 @@ export const GrapesJSEditor: React.FC<GrapesJSEditorProps> = ({ isPreview = fals
       if (isPreview) {
         // Ocultar painéis e painel lateral
         document.querySelectorAll(".gjs-pn").forEach((panel) => {
-          if (panel) panel.style.display = "none";
+          if (panel) {
+            const htmlElement = panel as HTMLElement;
+            htmlElement.style.display = "none";
+          }
         });
-        document.querySelector(".gjs-cv-canvas").style.width = "100%";
-        document.querySelector(".gjs-cv-canvas").style.height = "100%";
+        
+        const canvasElement = document.querySelector(".gjs-cv-canvas") as HTMLElement;
+        if (canvasElement) {
+          canvasElement.style.width = "100%";
+          canvasElement.style.height = "100%";
+        }
+        
         editor.current.runCommand("core:preview");
       } else {
         // Mostrar painéis e painel lateral
         document.querySelectorAll(".gjs-pn").forEach((panel) => {
-          if (panel) panel.style.display = "block";
+          if (panel) {
+            const htmlElement = panel as HTMLElement;
+            htmlElement.style.display = "block";
+          }
         });
-        document.querySelector(".gjs-cv-canvas").style.width = "calc(100% - 300px)";
-        document.querySelector(".gjs-cv-canvas").style.height = "100%";
+        
+        const canvasElement = document.querySelector(".gjs-cv-canvas") as HTMLElement;
+        if (canvasElement) {
+          canvasElement.style.width = "calc(100% - 300px)";
+          canvasElement.style.height = "100%";
+        }
+        
         editor.current.stopCommand("core:preview");
       }
     }
