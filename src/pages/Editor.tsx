@@ -1,31 +1,37 @@
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Save, Upload, Eye } from "lucide-react";
+import { ArrowLeft, Save, Upload, Eye, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { GrapesJSEditor } from "@/components/editor/GrapesJSEditor";
+import { PublishModal } from "@/components/editor/PublishModal";
+import { useEditor } from "@/components/editor/hooks/useEditor";
 
 const Editor: React.FC = () => {
   const [isPreview, setIsPreview] = useState(false);
+  const [isPublishModalOpen, setIsPublishModalOpen] = useState(false);
+  const editorContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
+  const { saveProject, downloadProject, publishProject } = useEditor({ 
+    containerRef: editorContainerRef 
+  });
 
-  const handlePublish = async () => {
-    setIsLoading(true);
-    toast({
-      title: "Preparando arquivos para publicação",
-      description: "Aguarde enquanto empacotamos sua página...",
-    });
-
-    // Simulando um processo de publicação
-    setTimeout(() => {
-      setIsLoading(false);
+  const handleSave = () => {
+    if (saveProject()) {
       toast({
-        title: "Página publicada com sucesso!",
-        description: "Acesse: https://sua-pagina.netlify.app",
+        title: "Changes saved",
+        description: "Your project has been saved successfully",
       });
-    }, 2000);
+    }
+  };
+
+  const handleDownload = async () => {
+    await downloadProject();
+  };
+
+  const handlePublish = async (options: { customDomain?: string }, onProgress?: (progress: number, log: string) => void) => {
+    return await publishProject(options, onProgress);
   };
 
   return (
@@ -35,7 +41,7 @@ const Editor: React.FC = () => {
           <Link to="/" className="hover:bg-primary-dark p-2 rounded-md">
             <ArrowLeft className="w-5 h-5" />
           </Link>
-          <h1 className="text-lg font-medium">Editor de Landing Page</h1>
+          <h1 className="text-lg font-medium">Landing Page Editor</h1>
         </div>
         <div className="flex items-center gap-2">
           <Button
@@ -45,37 +51,46 @@ const Editor: React.FC = () => {
             onClick={() => setIsPreview(!isPreview)}
           >
             <Eye className="w-4 h-4 mr-2" />
-            {isPreview ? "Editar" : "Visualizar"}
+            {isPreview ? "Edit" : "Preview"}
           </Button>
           <Button
             variant="outline"
             size="sm"
             className="text-white hover:bg-primary-dark"
-            onClick={() => {
-              toast({
-                title: "Alterações salvas",
-                description: "Seu projeto foi salvo com sucesso",
-              });
-            }}
+            onClick={handleSave}
           >
             <Save className="w-4 h-4 mr-2" />
-            Salvar
+            Save
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-white hover:bg-primary-dark"
+            onClick={handleDownload}
+          >
+            <Download className="w-4 h-4 mr-2" />
+            Export
           </Button>
           <Button
             variant="secondary"
             size="sm"
-            onClick={handlePublish}
-            disabled={isLoading}
+            onClick={() => setIsPublishModalOpen(true)}
           >
             <Upload className="w-4 h-4 mr-2" />
-            Publicar
+            Publish
           </Button>
         </div>
       </header>
 
-      <div className="flex-1 flex">
+      <div className="flex-1" ref={editorContainerRef}>
         <GrapesJSEditor isPreview={isPreview} />
       </div>
+
+      <PublishModal 
+        isOpen={isPublishModalOpen}
+        onClose={() => setIsPublishModalOpen(false)}
+        onPublish={handlePublish}
+      />
     </div>
   );
 };
